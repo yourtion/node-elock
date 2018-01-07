@@ -1,0 +1,27 @@
+{
+  "name": "elock",
+  "version": "0.0.1",
+  "description": "Easy use distributed redis lock implementation",
+  "main": "dist/lib/index.js",
+  "typing": "dist/lib/index.d.ts",
+  "files": [
+    "dist/lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourtion/node-elock.git"
+  },
+  "keywords": [
+    "redis",
+    "lock"
+  ],
+  "author": "Yourtion <yourtion@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourtion/node-elock/issues"
+  },
+  "homepage": "https://github.com/yourtion/node-elock#readme"
+}
