@@ -1,6 +1,6 @@
 {
   "name": "elock",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Easy use distributed redis lock implementation",
   "main": "dist/lib/index.js",
   "typing": "dist/lib/index.d.ts",
@@ -13,6 +13,7 @@
     "lint": "tslint --project tsconfig.json --fix",
     "clean": "rm -rf dist",
     "compile": "tsc",
+    "doc": "typedoc src/lib/index.ts --out docs --mode file",
     "prepublish": "npm run clean && npm run compile"
   },
   "repository": {
@@ -40,6 +41,7 @@
     "@types/node": "^8.0.41",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
-    "source-map-support": "^0.4.15"
+    "source-map-support": "^0.4.15",
+    "typedoc": "^0.10.0"
   }
 }
