@@ -8,7 +8,7 @@
     "dist/lib"
   ],
   "scripts": {
-    "test": "mocha --require ts-node/register src/test/**/*.test.*",
+    "test": "tsc && mocha --reporter spec --require ts-node/register --exit src/test/test.ts",
     "tag": "git tag v`node -p 'require(\"./package\").version'`",
     "lint": "tslint --project tsconfig.json --fix",
     "clean": "rm -rf dist",
@@ -34,14 +34,17 @@
     "debug": "^3.1.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.0.4",
+    "@types/chai": "^4.1.2",
     "@types/debug": "0.0.30",
     "@types/ioredis": "^3.2.5",
-    "@types/mocha": "^2.2.43",
+    "@types/mocha": "^2.2.48",
     "@types/node": "^8.0.41",
     "chai": "^4.1.2",
-    "mocha": "^4.0.1",
+    "ioredis": "^3.2.2",
+    "mocha": "^4.1.0",
     "source-map-support": "^0.4.15",
-    "typedoc": "^0.10.0"
+    "ts-node": "^4.1.0",
+    "typedoc": "^0.10.0",
+    "typescript": "^2.7.2"
   }
 }
