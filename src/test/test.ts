@@ -2,7 +2,7 @@
 
 import { assert } from "chai";
 import * as IORedis from "ioredis";
-import ELock from "../../dist/lib";
+import ELock from "../lib";
 
 function delay(time: number) {
   return new Promise((resolve, reject) => {
