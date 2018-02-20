@@ -1,6 +1,6 @@
 {
   "name": "elock",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Easy use distributed redis lock implementation",
   "main": "dist/lib/index.js",
   "typing": "dist/lib/index.d.ts",
