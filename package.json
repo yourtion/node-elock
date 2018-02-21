@@ -16,7 +16,7 @@
     "clean": "rm -rf dist",
     "compile": "tsc",
     "doc": "typedoc src/lib/index.ts --out docs --mode file",
-    "prepublishOnly": "npm run test:cov && npm clean && npm run compile",
+    "prepublishOnly": "npm run test:cov && npm run clean && npm run compile",
     "postpublish": "npm run tag"
   },
   "nyc": {
