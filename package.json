@@ -8,14 +8,16 @@
     "dist/lib"
   ],
   "scripts": {
-    "test": "tsc && mocha --exit --require ts-node/register src/test/test.ts",
-    "test:cov": "nyc npm test -- --require source-map-support/register --full-trace --bail",
+    "pretest": "npm run lint && tsc",
+    "test": "mocha --exit --require ts-node/register src/test/test.ts",
+    "test:cov": "export ISCOV=1 && nyc npm test -- --require source-map-support/register --full-trace --bail",
     "tag": "git tag v`node -p 'require(\"./package\").version'`",
     "lint": "tslint --project tsconfig.json --fix",
     "clean": "rm -rf dist",
     "compile": "tsc",
     "doc": "typedoc src/lib/index.ts --out docs --mode file",
-    "prepublish": "npm run clean && npm run compile"
+    "prepublishOnly": "npm run test:cov && npm clean && npm run compile",
+    "postpublish": "npm run tag"
   },
   "nyc": {
     "include": [

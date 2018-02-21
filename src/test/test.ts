@@ -2,7 +2,6 @@
 
 import { assert } from "chai";
 import * as IORedis from "ioredis";
-import ELock from "../lib";
 
 function delay(time: number) {
   return new Promise((resolve, reject) => {
@@ -13,6 +12,9 @@ function delay(time: number) {
 }
 
 describe("Libs - Redis Lock", async () => {
+  const packPath = process.env.ISCOV ? "../lib" : "../../dist/lib";
+  const pack = require(packPath);
+  const ELock = pack.default;
   const redis = new IORedis();
   const lock = new ELock(redis, { timeout: 100 });
 
