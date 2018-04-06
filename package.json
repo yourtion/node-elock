@@ -2,26 +2,27 @@
   "name": "elock",
   "version": "0.5.0",
   "description": "Easy use distributed redis lock implementation",
-  "main": "dist/lib/index.js",
-  "typing": "dist/lib/index.d.ts",
+  "main": "dist/index.js",
+  "typing": "dist/index.d.ts",
   "files": [
-    "dist/lib"
+    "dist/index.d.ts",
+    "dist/index.js"
   ],
   "scripts": {
     "pretest": "npm run lint && tsc",
-    "test": "mocha --exit --require ts-node/register src/test/test.ts",
+    "test": "mocha --exit --require ts-node/register src/test.ts",
     "test:cov": "export ISCOV=1 && nyc npm test -- --require source-map-support/register --full-trace --bail",
     "tag": "git tag v`node -p 'require(\"./package\").version'`",
     "lint": "tslint --project tsconfig.json --fix",
     "clean": "rm -rf dist",
     "compile": "tsc",
-    "doc": "typedoc src/lib/index.ts --out docs --mode file",
+    "doc": "typedoc src/index.ts --out docs --mode file",
     "prepublishOnly": "npm run clean && npm run compile && npm run test:cov",
     "postpublish": "npm run tag"
   },
   "nyc": {
     "include": [
-      "src/lib/*.ts"
+      "src/*.ts"
     ],
     "extension": [
       ".ts"
