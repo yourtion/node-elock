@@ -1,5 +1,7 @@
 # node-elock
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/yourtion/node-elock.svg)](https://greenkeeper.io/)
+
 Easy use distributed redis lock implementation
 
 ## Installation
