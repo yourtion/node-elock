@@ -44,7 +44,10 @@ class ELock {
    * @memberof ELock
    */
   public acquire(key = "default", timeout: number = this.timeout) {
-    return this.client.set(this.getKey(key), new Date().getTime(), "PX", timeout, "NX");
+    return this.client.set(this.getKey(key), new Date().getTime(), "PX", timeout, "NX").then((val) => {
+      if (!val) { throw new Error("acquire lock fail"); }
+      return val;
+    });
   }
 
   /**
@@ -56,7 +59,7 @@ class ELock {
    * @memberof ELock
    */
   public get(key = "default", timeout: number = this.timeout) {
-    return this.client.set(this.getKey(key), new Date().getTime(), "PX", timeout, "NX");
+    return this.client.set(this.getKey(key), new Date().getTime(), "PX", timeout, "NX")
   }
 
   /**
