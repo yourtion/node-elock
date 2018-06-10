@@ -5,15 +5,14 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
+    "sourceMap": false,
     "strict": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
+    "declarationMap": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
     "noFallthroughCasesInSwitch": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "target": "es6"
+    "target": "es6",
   },
   "include": [
     "./src/index.ts"

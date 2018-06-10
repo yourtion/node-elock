@@ -1,6 +1,5 @@
 "use strict";
 
-import { assert } from "chai";
 import * as IORedis from "ioredis";
 
 function delay(time: number) {
@@ -27,39 +26,34 @@ describe("Libs - Redis Lock", async () => {
   });
 
   it("Test - Default Lock acquire and release", async () => {
-    assert.isFalse(await lock.locked());
-    assert.ok(await lock.get());
-    assert.isTrue(await lock.locked());
-    assert.isNull(await lock.get());
-    try {
-      await lock.acquire();
-    } catch (error) {
-      assert.equal(error.message, "acquire lock fail");
-    }
+    expect.assertions(6);
+    await expect(lock.locked()).resolves.toBeFalsy();
+    await expect(lock.get()).resolves.toBeTruthy();
+    await expect(lock.locked()).resolves.toBeTruthy();
+    await expect(lock.get()).resolves.toBeNull();
+    await expect(lock.acquire()).rejects.toThrow("acquire lock fail");
     await lock.release();
-    assert.ok(await lock.acquire());
+    await expect(lock.acquire()).resolves.toBeTruthy();
   });
 
   it("Test - Default Lock concurrent", async () => {
+    expect.assertions(2);
     const all = await Promise.all([lock.get(), lock.get(), lock.get()]);
-    assert.equal(all.length, 3);
+    expect(all.length).toEqual(3);
     const res = all.filter((r: any) => !!r);
-    assert.equal(res.length, 1);
+    expect(res.length).toEqual(1);
   });
 
   it("Test - Default Lock timeout", async () => {
-    assert.ok(await lock.acquire());
-    assert.isNull(await lock.get());
+    expect.assertions(6);
+    await expect(lock.acquire()).resolves.toBeTruthy();
+    await expect(lock.get()).resolves.toBeNull();
     await delay(10);
-    assert.isNull(await lock.get());
-    try {
-      await lock.acquire();
-    } catch (error) {
-      assert.equal(error.message, "acquire lock fail");
-    }
+    await expect(lock.get()).resolves.toBeNull();
+    await expect(lock.acquire()).rejects.toThrow("acquire lock fail");
     await delay(91);
-    assert.isFalse(await lock.locked());
-    assert.ok(await lock.get());
+    await expect(lock.locked()).resolves.toBeFalsy();
+    await expect(lock.get()).resolves.toBeTruthy();
   });
 
 });

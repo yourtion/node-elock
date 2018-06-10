@@ -1,10 +1,7 @@
-"use strict";
-
 /**
  * @file ELock
  * @author Yourtion Guo <yourtion@gmail.com>
  */
-import Promise = require("bluebird");
 import { Redis } from "ioredis";
 
 export interface IELockOptions {
@@ -40,11 +37,10 @@ class ELock {
    *
    * @param {string} [key="default"] lock key
    * @param {number} [timeout=this.timeout] lock time (ms)
-   * @returns {Promise}
    * @memberof ELock
    */
   public acquire(key = "default", timeout: number = this.timeout) {
-    return this.client.set(this.getKey(key), new Date().getTime(), "PX", timeout, "NX").then((val) => {
+    return this.client.set(this.getKey(key), new Date().getTime(), "PX", timeout, "NX").then((val: any) => {
       if (!val) { throw new Error("acquire lock fail"); }
       return val;
     });
@@ -55,18 +51,16 @@ class ELock {
    *
    * @param {string} [key="default"] lock key
    * @param {number} [timeout=this.timeout] lock time (ms)
-   * @returns {Promise}
    * @memberof ELock
    */
   public get(key = "default", timeout: number = this.timeout) {
-    return this.client.set(this.getKey(key), new Date().getTime(), "PX", timeout, "NX")
+    return this.client.set(this.getKey(key), new Date().getTime(), "PX", timeout, "NX");
   }
 
   /**
    * Release the lock
    *
    * @param {string} [key="default"] lock key
-   * @returns @returns {Promise}
    * @memberof ELock
    */
   public release(key = "default") {
@@ -77,11 +71,10 @@ class ELock {
    * Check is locked
    *
    * @param {string} [key="default"] lock key
-   * @returns {Promise}
    * @memberof ELock
    */
   public locked(key = "default") {
-    return this.client.get(this.getKey(key)).then((res) => !!res);
+    return (this.client.get(this.getKey(key)) as any).then((res: any) => !!res);
   }
 
   /**
