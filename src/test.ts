@@ -4,7 +4,7 @@ import { assert } from "chai";
 import * as IORedis from "ioredis";
 
 function delay(time: number) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(true);
     }, time);
@@ -12,7 +12,7 @@ function delay(time: number) {
 }
 
 describe("Libs - Redis Lock", async () => {
-  const packPath = process.env.ISCOV ? "./" : "../dist/";
+  const packPath = process.env.ISLIB ? "./" : "../dist/";
   const pack = require(packPath);
   const ELock = pack.default;
   const redis = new IORedis();
@@ -20,6 +20,10 @@ describe("Libs - Redis Lock", async () => {
 
   beforeEach(async () => {
     await lock.release();
+  });
+
+  afterAll(async () => {
+    await redis.disconnect();
   });
 
   it("Test - Default Lock acquire and release", async () => {
