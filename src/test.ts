@@ -12,7 +12,7 @@ function delay(time: number) {
 }
 
 describe("Libs - Redis Lock", async () => {
-  const packPath = process.env.ISCOV ? "../lib" : "../../dist/lib";
+  const packPath = process.env.ISCOV ? "./" : "../dist/";
   const pack = require(packPath);
   const ELock = pack.default;
   const redis = new IORedis();

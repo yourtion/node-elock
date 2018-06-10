@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Easy use distributed redis lock implementation",
   "main": "dist/index.js",
-  "typing": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist/index.d.ts",
     "dist/index.js"
