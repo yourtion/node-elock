@@ -3,7 +3,7 @@
 import * as IORedis from "ioredis";
 
 function delay(time: number) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve(true);
     }, time);
@@ -55,5 +55,4 @@ describe("Libs - Redis Lock", async () => {
     await expect(lock.locked()).resolves.toBeFalsy();
     await expect(lock.get()).resolves.toBeTruthy();
   });
-
 });

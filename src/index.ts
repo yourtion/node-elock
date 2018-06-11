@@ -15,7 +15,6 @@ export interface IELockOptions {
  * @class ELock
  */
 class ELock {
-
   private client: Redis;
   private prefix: string;
   private timeout: number;
@@ -40,10 +39,14 @@ class ELock {
    * @memberof ELock
    */
   public acquire(key = "default", timeout: number = this.timeout) {
-    return this.client.set(this.getKey(key), new Date().getTime(), "PX", timeout, "NX").then((val: any) => {
-      if (!val) { throw new Error("acquire lock fail"); }
-      return val;
-    });
+    return this.client
+      .set(this.getKey(key), new Date().getTime(), "PX", timeout, "NX")
+      .then((val: any) => {
+        if (!val) {
+          throw new Error("acquire lock fail");
+        }
+        return val;
+      });
   }
 
   /**
