@@ -1,13 +1,12 @@
 {
   "name": "elock",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Easy use distributed redis lock implementation",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist/index.d.ts",
-    "dist/index.js",
-    "dist/index.d.ts.map"
+    "dist/index.js"
   ],
   "scripts": {
     "pretest": "npm run lint && tsc",
@@ -18,7 +17,7 @@
     "lint": "prettier --write src/**/*.ts && tslint --project tsconfig.json --fix",
     "clean": "rm -rf dist",
     "compile": "tsc",
-    "prepublishOnly": "npm run clean && npm run test:cov",
+    "prepublishOnly": "npm run clean && tsc",
     "doc": "typedoc src/index.ts --out docs --mode file",
     "postpublish": "npm run tag"
   },
@@ -40,15 +39,15 @@
     "ioredis": "^3.2.2"
   },
   "devDependencies": {
-    "@types/ioredis": "^3.2.8",
+    "@types/ioredis": "^4.0.0",
     "@types/jest": "^23.0.0",
-    "ioredis": "^3.2.2",
+    "ioredis": "^4.0.0",
     "jest": "^23.1.0",
     "prettier": "^1.13.5",
     "ts-jest": "^23.0.0",
-    "ts-node": "^6.1.0",
+    "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
-    "typedoc": "^0.11.1",
+    "typedoc": "^0.13.0",
     "typescript": "^2.9.1"
   },
   "jest": {
