@@ -43,7 +43,7 @@
     "@types/jest": "^24.0.0",
     "ioredis": "^4.0.0",
     "jest": "^23.1.0",
-    "prettier": "^1.13.5",
+    "prettier": "^2.0.3",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.2",
     "tslint": "^5.10.0",
